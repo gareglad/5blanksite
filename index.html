@@ -6,16 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <style>
-       
+       #div1{
+        position: absolute;
+       }
     </style>
     <script src="joy.js"></script>
 
 </head>
 <body>
     <div id="joyDiv" style="width:200px;height:200px;margin-bottom:20px;"></div>
+    <div id="div1">1234</div>
+    <!-- <input id="joy1PosizioneX" type="text" /> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script  type="text/javascript">
-        var joy = new JoyStick('joyDiv');
-        setInterval(function(){ x.value=joy.GetX(); }, 50);
+        $(document).ready(function() {   
+        //var joy1IinputPosX = document.getElementById("joy1PosizioneX");
+        //var div = document.getElementById("div1");
+        var div = $('#div1');
+        //var joy = new JoyStick('joyDiv');
+        var Joy1 = new JoyStick('joyDiv', {}, function(stickData) {
+    //joy1IinputPosX.value = stickData.xPosition;
+    //joy1InputPosY.value = stickData.yPosition;
+    //joy1Direzione.value = stickData.cardinalDirection;
+    //joy1X.value = stickData.x;
+    //joy1Y.value = stickData.y;
+   // console.log(joy1X.value);
+});
+//setInterval(function(){ x.value=joy.GetX(); }, 50);
+//setInterval(function(){ joy1IinputPosX.value=Joy1.GetPosX(); }, 50);
+
+//setInterval(function(){ $('#div1').css('top', div1top + Joy1.GetPosX()) }, 50);
+setInterval(function(){
+    var posx = Joy1.GetPosX();
+    var div1top = parseInt($('#div1').css('top')) - 100;
+    var div1left = parseInt($('#div1').css('left')) - 100;
+
+    $('#div1').css('top',div1top + Joy1.GetPosY());
+    $('#div1').css('left',div1left + Joy1.GetPosX());
+    //console.log(Joy1.GetPosX()) 
+    }, 50);
+});
+//setInterval(function(){ $('#div1').css('left', Joy1.GetPosY()) }, 50);
+
     </script>
 </body>
 </html>
